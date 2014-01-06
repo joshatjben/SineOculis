@@ -1,13 +1,17 @@
 {
   "name": "ffmpegExtractNode",
-  "version": "0.0.0",
-  "description": "",
-  "main": "ExtractAudio.js",
+  "version": "0.0.1",
+  "description": "A node js script that uses ffmpeg to extract audio from video files.",
+  "main": "soculis.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/joshatjben/SineOculis.git"
+  }
+  "author": "Josh Bennett",
+  "license": "MIT",
   "dependencies": {
     "async": "~0.2.9",
     "optimist": "~0.6.0"
