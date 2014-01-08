@@ -6,8 +6,8 @@ var async = require('async'),
     .demand('inputDir')
     .string('outputDir')
     .demand('outputDir')
-    .string('fileType')
-    .demand('fileType')
+    //.string('fileType')
+    //.demand('fileType')
     .argv,
   exec = require('child_process').exec,
   filesToConvert = [],
@@ -15,7 +15,8 @@ var async = require('async'),
   isWin = process.platform.match(/^win/),
   SLASH = isWin ? "\\" : "/",
   ENDS_WITH_SLASH = new RegExp( "(?:\\|/)$", "gi"),
-  MATCH_FILE = new RegExp( "\." +argv.fileType + "$", "gi" ),
+  //MATCH_FILE = new RegExp( "\." +argv.fileType + "$", "gi" ),
+  //MATCH_FILE = new RegExp( "mp4|mp3|m4v|m4p", "gi" ),
   ECHO = true;
 
 // Make sure paths always end with slash
@@ -60,20 +61,22 @@ function main() {
 }
 
 function createOutputDirIfDoesNotExist(exists, callback){
-	if(exists)
+	if(exists){
+		callback(null, argv.outputDir + " already exists")
 		return;
+	}
 		
 	fs.mkdir(argv.outputDir, function(){
-		callback(null, argv.outputDir + "Created");
+		callback(null, argv.outputDir + " Created");
 	});
 }
 
 // Run the fffmpeg command against all the files    
 function convertFile(item, callback) {
-  if(!MATCH_FILE.test(item)){
+  /*if(!MATCH_FILE.test(item)){
     callback(null);
     return;
-  }
+  }*/
   var command = 'ffmpeg.exe -i "' + argv.inputDir + item + '" -vn -y -acodec copy "' + argv.outputDir + item + '"';
   async.series([
       function (cb) {
