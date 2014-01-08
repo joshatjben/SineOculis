@@ -24,14 +24,22 @@ argv.outputDir = ENDS_WITH_SLASH.test(argv.outputDir) ? argv.inputDir : argv.out
 
 // Execute at launch
 function main() {
-
+  
   async.series([
-      function (callback) {
+      // Check to see if the output directory exists
+	  function (callback) {
+		fs.exists(argv.outputDir, function(exists){
+			createOutputDirIfDoesNotExist(exists, callback);
+		});
+	  },
+	  // Find all the files that need audio copied out
+	  function (callback) {
         walk(argv.inputDir, function (err, results) {
           filesToConvert = results;
           callback(err, results);
         });
       },
+	  // Copy Audio to new location
       function (callback) {
         async.each(
           filesToConvert,
@@ -49,6 +57,15 @@ function main() {
       console.log(filesToConvert.length.toString() + " files extracted.")
     }
   );
+}
+
+function createOutputDirIfDoesNotExist(exists, callback){
+	if(exists)
+		return;
+		
+	fs.mkdir(argv.outputDir, function(){
+		callback(null, argv.outputDir + "Created");
+	});
 }
 
 // Run the fffmpeg command against all the files    
