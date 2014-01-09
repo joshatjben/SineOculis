@@ -1,6 +1,6 @@
 {
   "name": "ffmpegExtractNode",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A node js script that uses ffmpeg to extract audio from video files.",
   "main": "soculis.js",
   "scripts": {
