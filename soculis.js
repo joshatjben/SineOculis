@@ -16,7 +16,7 @@ var async = require('async'),
   SLASH = isWin ? "\\" : "/",
   ENDS_WITH_SLASH = new RegExp( "(?:\\|/)$", "gi"),
   //MATCH_FILE = new RegExp( "\." +argv.fileType + "$", "gi" ),
-  //MATCH_FILE = new RegExp( "mp4|mp3|m4v|m4p", "gi" ),
+  MATCH_FILE = new RegExp( "(?:mp4|m4v|ogg|avi|mpeg)", "gi" ),
   ECHO = true;
 
 // Make sure paths always end with slash
@@ -154,6 +154,7 @@ var walk = function(dir, done) {
     list.forEach(function(file) {
       //file = dir + '/' + file;
       file = file;
+	  
       fs.stat(file, function(err, stat) {
         if (stat && stat.isDirectory()) {
           walk(file, function(err, res) {

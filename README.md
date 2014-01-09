@@ -1,5 +1,5 @@
 # SineOculis
-A simple node js script that uses ffmpeg to extract audio from video files.
+A simple node js script that uses ffmpeg to extract audio from video files in all files under in a directory.
 
 ## Usage
 ### Example
