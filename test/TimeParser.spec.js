@@ -1,5 +1,5 @@
 describe("TimeParser", function () {
-  it("returns an array of objects containing time,songtitle, songnumber using standard [n. title here hh:mm] format", function () {
+  it("using default input format [n. title here hh:mm] format should return an array of objects containing time, songtitle, songnumber", function () {
 
     var inputTimeString =
       "1. Test title here 0:00\n\r" +
