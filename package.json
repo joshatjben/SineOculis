@@ -10,5 +10,8 @@
     "grunt": "*",
     "grunt-karma": "*"
   },
-  "author": "Josh Bennett"
+  "author": "Josh Bennett",
+  "dependencies": {
+    "underscore": "~1.6.0"
+  }
 }
