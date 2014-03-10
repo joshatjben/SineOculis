@@ -13,6 +13,11 @@ describe("TimeParser", function () {
         "hour": 0,
         "minute": 0,
         "second": 0
+      },
+      "endingAt": {
+        "hour": 0,
+        "minute": 3,
+        "second": 31
       }
     }, {
       "TrackNumber": 2,
@@ -21,6 +26,11 @@ describe("TimeParser", function () {
         "hour": 0,
         "minute": 3,
         "second": 31
+      },
+      "endingAt": {
+        "hour": 0,
+        "minute": 7,
+        "second": 9,
       }
     }, {
       "TrackNumber": 3,
@@ -29,7 +39,8 @@ describe("TimeParser", function () {
         "hour": 0,
         "minute": 7,
         "second": 9
-      }
+      },
+      "endingAt": null,
     }];
 
     var actualParsedOutput = new window.me.joshbennett.TimeParser.parseFromString(inputTimeString);
