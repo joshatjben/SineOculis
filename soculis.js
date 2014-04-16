@@ -6,16 +6,16 @@ var async = require('async'),
     .demand('inputDir')
     .string('outputDir')
     .demand('outputDir')
-    //.string('fileType')
-    //.demand('fileType')
+    .string('artist')
+    .demand('artist')
     .argv,
+  
   exec = require('child_process').exec,
   filesToConvert = [],
   fs = require('fs'),
   isWin = process.platform.match(/^win/),
   SLASH = isWin ? "\\" : "/",
   ENDS_WITH_SLASH = new RegExp( "(?:\\|/)$", "gi"),
-  //MATCH_FILE = new RegExp( "\." +argv.fileType + "$", "gi" ),
   MATCH_FILE = new RegExp( "(?:mp4|m4v|ogg|avi|mpeg)", "gi" ),
   ECHO = true;
 
@@ -46,7 +46,7 @@ function main() {
           filesToConvert,
           convertFile,
           function (err) {
-            //callback(err, null);
+            //TODO handle error
           }
         );
       }
@@ -73,10 +73,6 @@ function createOutputDirIfDoesNotExist(exists, callback){
 
 // Run the fffmpeg command against all the files    
 function convertFile(item, callback) {
-  /*if(!MATCH_FILE.test(item)){
-    callback(null);
-    return;
-  }*/
   var command = 'ffmpeg.exe -i "' + argv.inputDir + item + '" -vn -y -acodec copy "' + argv.outputDir + item + '"';
   async.series([
       function (cb) {
@@ -145,7 +141,7 @@ function handleExecDone(error, stdout, stderr, callback, command) {
   callback(null, stdout);
 }
 
-var walk = function(dir, done) {
+function walk(dir, done) {
   var results = [];
   fs.readdir(dir, function(err, list) {
     if (err) return done(err);
